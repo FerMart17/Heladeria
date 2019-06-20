@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/06/2019 19:14:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="proyecto1" name="aplicacion.hibernate.mapeos.Categoria" optimistic-lock="version" table="categorias">
+    <id name="idcategoria" type="java.lang.Integer">
+      <column name="idcategoria"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="45" name="nombre"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column length="45" name="descripcion"/>
+    </property>
+    <property name="estado" type="java.lang.Boolean">
+      <column name="estado"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="productoses" table="productos">
+      <key>
+        <column name="categorias_idcategoria" not-null="true"/>
+      </key>
+      <one-to-many class="aplicacion.hibernate.mapeos.Producto"/>
+    </set>
+  </class>
+</hibernate-mapping>
