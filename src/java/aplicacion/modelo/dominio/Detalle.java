@@ -11,7 +11,7 @@ public class Detalle  implements java.io.Serializable {
 
      private int iddetalle;
      private Factura factura;
-     private Productos productos;
+     private Producto producto;
      private Integer cantidad;
      private String precioProdCant;
 
@@ -19,15 +19,15 @@ public class Detalle  implements java.io.Serializable {
     }
 
 	
-    public Detalle(int iddetalle, Factura factura, Productos productos) {
+    public Detalle(int iddetalle, Factura factura, Producto producto) {
         this.iddetalle = iddetalle;
         this.factura = factura;
-        this.productos = productos;
+        this.producto = producto;
     }
-    public Detalle(int iddetalle, Factura factura, Productos productos, Integer cantidad, String precioProdCant) {
+    public Detalle(int iddetalle, Factura factura, Producto producto, Integer cantidad, String precioProdCant) {
        this.iddetalle = iddetalle;
        this.factura = factura;
-       this.productos = productos;
+       this.producto = producto;
        this.cantidad = cantidad;
        this.precioProdCant = precioProdCant;
     }
@@ -46,12 +46,12 @@ public class Detalle  implements java.io.Serializable {
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
-    public Productos getProductos() {
-        return this.productos;
+    public Producto getProducto() {
+        return this.producto;
     }
     
-    public void setProductos(Productos productos) {
-        this.productos = productos;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
     public Integer getCantidad() {
         return this.cantidad;
