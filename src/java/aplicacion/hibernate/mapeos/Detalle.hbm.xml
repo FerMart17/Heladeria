@@ -7,10 +7,10 @@
       <column name="iddetalle"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="aplicacion.hibernate.mapeos.Factura" fetch="select" name="factura">
+    <many-to-one class="aplicacion.hibernate.mapeos.Factura" fetch="join" cascade="all" name="factura">
       <column name="factura_numFactura" not-null="true"/>
     </many-to-one>
-    <many-to-one class="aplicacion.hibernate.mapeos.Producto" fetch="select" name="productos">
+    <many-to-one class="aplicacion.hibernate.mapeos.Producto" fetch="join" cascade="all" name="productos">
       <column name="productos_codProducto" not-null="true"/>
     </many-to-one>
     <property name="cantidad" type="java.lang.Integer">

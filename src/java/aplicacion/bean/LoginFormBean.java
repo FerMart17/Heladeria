@@ -31,6 +31,7 @@ public class LoginFormBean {
     }
 
     public LoginFormBean() {
+        loginBean=new LoginBean ();
     }
 
     
