@@ -22,7 +22,7 @@ public class UsuarioFormBean implements Serializable{
     private UsuarioBean usuarioBean;
     private Usuario unUsuario;
     private String nombre;
-    private List<Usuario> listaUsarios;
+    private List<Usuario> listaUsuarios;
 
     /**
      * Creates a new instance of UsuarioFormBean
@@ -32,27 +32,25 @@ public class UsuarioFormBean implements Serializable{
     }
     public  void init(){
         unUsuario=new Usuario();
-        listaUsarios=new ArrayList<>();
+        listaUsuarios=new ArrayList<>();
     }
 
-    public UsuarioFormBean(UsuarioBean usuarioBean, Usuario unUsuario, String nombre, List<Usuario> listaUsarios) {
+    public UsuarioFormBean(UsuarioBean usuarioBean, Usuario unUsuario, String nombre, List<Usuario> listaUsuarios) {
         this.usuarioBean = usuarioBean;
         this.unUsuario = unUsuario;
         this.nombre = nombre;
-        this.listaUsarios = listaUsarios;
+        this.listaUsuarios = listaUsuarios;
     }
     public Usuario validarUsuario ( String  nombreUsuario ,String password ){
         String resultado=null;
-        Usuario unUsuario = usuarioBean.validarUsuario(nombreUsuario, password);
+        unUsuario = usuarioBean.validarUsuario(nombreUsuario, password);
         if(unUsuario== null){
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Credenciales Invalidas","Credenciales Invalidas");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Credenciales Invalidas","Credenciales Invalidas");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
         }
         else
         {
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Producto Valido", "ProductoValido");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Credenciales Validas", "Credenciales Validas");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValidado", unUsuario);
             if (unUsuario.getNombreUsuario().equals("usuario")){
@@ -67,7 +65,7 @@ public class UsuarioFormBean implements Serializable{
     }
        public Usuario obtenerUsuario (String nombreUsuario){
         String resultado=null;
-        Usuario unUsuario = usuarioBean.obtenerUsuario(nombreUsuario);
+        unUsuario = usuarioBean.obtenerUsuario(nombreUsuario);
         if(unUsuario== null){
             FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Credenciales Invalidas","Credenciales Invalidas");
@@ -78,7 +76,7 @@ public class UsuarioFormBean implements Serializable{
             FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Producto Valido", "ProductoValido");
             if (unUsuario.getNombreUsuario().equals("usuario")){
-                    resultado="usuario?faces-redirect=true";
+                    resultado="paginaCliente?faces-redirect=true"; //usuario
             }
             else
                 {
@@ -91,7 +89,7 @@ public class UsuarioFormBean implements Serializable{
 
      public void agregarUsuario (Usuario unUsuario){
         getUnUsuario().setEstado(true);
-        if(getListaUsarios()!=null){
+        if(getListaUsuarios()!=null){
             getUsuarioBean().agregarUsuario(getUnUsuario());
             FacesMessage facesMessage=new FacesMessage
                 (FacesMessage.SEVERITY_INFO,"Usuario agregado correctamente ","Usuario"+getUnUsuario().getTipoUsuario());
@@ -107,7 +105,7 @@ public class UsuarioFormBean implements Serializable{
 
     public void modificarUsuario (Usuario unUsuario){
        getUnUsuario().setEstado(true);
-        if(getListaUsarios()!=null){
+        if(getListaUsuarios()!=null){
             getUsuarioBean().modificarUsuario(unUsuario);
             FacesMessage facesMessage=new FacesMessage
                 (FacesMessage.SEVERITY_INFO,"Usuario modificado correctamente ","Usuario"+getUnUsuario().getTipoUsuario());
@@ -122,7 +120,7 @@ public class UsuarioFormBean implements Serializable{
     }
     public void eliminarUsuario (Usuario unUsuario){
         getUnUsuario().setEstado(true);
-        if(getListaUsarios()!=null){
+        if(getListaUsuarios()!=null){
             getUsuarioBean().eliminarUsuario(unUsuario);
             FacesMessage facesMessage=new FacesMessage
                 (FacesMessage.SEVERITY_INFO,"Usuario eliminado correctamente ","Usuario"+getUnUsuario().getTipoUsuario());
@@ -181,15 +179,15 @@ public class UsuarioFormBean implements Serializable{
     /**
      * @return the listaUsarios
      */
-    public List<Usuario> getListaUsarios() {
-        return listaUsarios;
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
     }
 
     /**
-     * @param listaUsarios the listaUsarios to set
+     * @param listaUsuarios the listaUsuarios to set
      */
-    public void setListaUsarios(List<Usuario> listaUsarios) {
-        this.listaUsarios = listaUsarios;
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
 
 }

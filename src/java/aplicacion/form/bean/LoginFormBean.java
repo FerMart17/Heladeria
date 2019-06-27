@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplicacion.bean;
+package aplicacion.form.bean;
 
+import aplicacion.bean.LoginBean;
 import aplicacion.modelo.dominio.Usuario;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -47,12 +48,28 @@ public class LoginFormBean {
         {
             FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario Valido","Usuario Valido");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValidado", usuario);
-            resultado="busquedalibros?faces-redirect=true"; //¿busqueda libros?
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValidado", usuario); 
+            //se guarda el "usuario" con el nombre "usuarioValidado" en el SessionMap del Context
+            if(usuario.getTipoUsuario().equals("ADMINISTRADOR")){
+                resultado="paginaAdministrador?faces-redirect=true";
+            }
+            else{
+                resultado="paginaCliente?faces-redirect=true";
+            }
+            
         }
         return resultado;
     }
-
+    /**
+     * Metodo get que ayuda a disponer del usuario cuando se lo necesite
+     * actuará como un atributo de la Clase
+     * @return usuario
+     */
+    public String getNombreUsuarioValidado (){
+        Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValidado"); 
+        //crea un usuario con el usuarioValidado extraido del contexto
+        return usuario.getApellidos();
+    }
     public LoginBean getLoginBean() {
         return loginBean;
     }

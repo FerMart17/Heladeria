@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:submenu label="Administrador"></p:submenu>
+            <p:submenu label="Tablas">
+                <p:menuitem value="Usuarios" outcome="/administrador" />
+                <p:menuitem value="Productos" outcome="/productos" />
+            </p:submenu>
+            <p:menuitem value="Datos personales" outcome="/cliente" />
+            <p:menuitem value="Volver" outcome="/login" />
+            <f:facet name="options">
+                <p:outputLabel value="Bienvenido: ${loginFormBean.nombreUsuarioValidado}" />
+                <p:commandButton value="Cerrar Session" />
+            </f:facet>
+        </h:form>
+    </h:body>
+</html>
+

@@ -31,7 +31,7 @@ public class UsuarioBean implements Serializable{
      * Creates a new instance of UsuarioBean
      */
     public UsuarioBean() {
-        IUsuarioDAO usuarioDAO= new UsuarioDaoImp();
+        usuarioDAO= new UsuarioDaoImp();
         listaUsarios=new ArrayList<>();
     }
     public Usuario validarUsuario(String nombreUsuario, String password){
