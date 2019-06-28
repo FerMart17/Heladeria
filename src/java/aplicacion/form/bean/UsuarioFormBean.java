@@ -67,14 +67,12 @@ public class UsuarioFormBean implements Serializable{
         String resultado=null;
         unUsuario = usuarioBean.obtenerUsuario(nombreUsuario);
         if(unUsuario== null){
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Credenciales Invalidas","Credenciales Invalidas");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Credenciales Invalidas","Credenciales Invalidas");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
         }
         else
         {
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Producto Valido", "ProductoValido");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario Valido", "Usuario Valido");
             if (unUsuario.getNombreUsuario().equals("usuario")){
                     resultado="paginaCliente?faces-redirect=true"; //usuario
             }
@@ -84,6 +82,16 @@ public class UsuarioFormBean implements Serializable{
                 }  
         }
        return unUsuario;
+    }
+        public List <Usuario> obtenerListaUsuariosActivos(){
+            listaUsuarios= usuarioBean.obtenerListaUsuariosActivos();
+            if(unUsuario== null){
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Credenciales Invalidas","Credenciales Invalidas");
+            FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+        }
+        
+        return listaUsuarios;
     }
 
 
@@ -133,7 +141,7 @@ public class UsuarioFormBean implements Serializable{
         }
         setUnUsuario(unUsuario);
     }
-
+   
     /**
      * @return the usuarioBean
      */

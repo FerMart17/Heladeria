@@ -44,16 +44,14 @@ public class ProductoFormBean implements Serializable{
     }
     public Producto  validarProducto ( String  nombreProducto , int  codigo ){
         String resultado=null;
-        Producto unProducto = productoBean.validarProducto(nombreProducto, codigo);
+        unProducto = productoBean.validarProducto(nombreProducto, codigo);
         if(unProducto == null){
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Credenciales Invalidas","Credenciales Invalidas");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Credenciales Invalidas","Credenciales Invalidas");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
         }
         else
         {
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Producto Valido", "ProductoValido");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto Valido", "ProductoValido");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValidado", unProducto);
             if (unProducto.getCodProducto().equals("producto")){
@@ -162,8 +160,8 @@ public class ProductoFormBean implements Serializable{
             return new DefaultStreamedContent();
         } 
         else{
-            String codigo = context.getExternalContext().getRequestParameterMap().get("codProd");
-            Producto producto = getProductoBean().obtenerProducto(codigo);
+            String descrip = context.getExternalContext().getRequestParameterMap().get("descripcion");
+            Producto producto = getProductoBean().obtenerProducto(descrip);
             if(producto.getFoto()==null){
                 return null;
             }

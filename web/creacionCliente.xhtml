@@ -8,7 +8,32 @@
     </h:head>
     <h:body>
         <p:panel header="Crear usuario-Completa los datos">
-            
+            <h:panelGrid id="fmrUsuario" columns="4">
+                <p:outputLabel id="lbl1" value="Nombre Usuario: " />
+                <p:inputText id="nombreUsuario" value="#{usuarioFormBean.unUsuario.nombreUsuario}"/>
+                <p:outputLabel id="lbl2" value="Password: " />
+                <p:inputText id="nombreUsuario" value="#{usuarioFormBean.unUsuario.password}"/>
+                <p:outputLabel id="lbl3" value="Nombres: " />
+                <p:inputText id="nombreUsuario" value="#{usuarioFormBean.unUsuario.nombres}"/>
+                <p:outputLabel id="lbl4" value="Apellidos: " />
+                <p:inputText id="nombreUsuario" value="#{usuarioFormBean.unUsuario.apellidos}"/>
+                
+                 <p:outputLabel id="lbl5" value="DNI: " />
+                <p:inputText id="nombreUsuario" value="#{clienteFormBean}"/>
+                
+     private int codigo;
+     private Cliente cliente;
+     private String tipoUsuario;
+     private Boolean estado;
+     
+     private int dni;
+     private String domicilio;
+     private String provincia;
+     private String pais;
+     private Date fechaNac;
+     private String telefono;
+     private String mail;
+            </h:panelGrid>
         </p:panel>
     </h:body>
 </html>

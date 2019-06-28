@@ -3,13 +3,13 @@ package aplicacion.dao.mysql;
 import aplicacion.dao.IUsuarioDAO;
 import aplicacion.hibernate.configuracion.NewHibernateUtil;
 import aplicacion.modelo.dominio.Usuario;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
  */
 @ManagedBean
 @ViewScoped
-public class UsuarioDaoImp implements IUsuarioDAO{
+public class UsuarioDaoImp implements IUsuarioDAO , Serializable{
 
     //Implementacion del DAO de Usuario
     public UsuarioDaoImp() {
@@ -37,9 +37,10 @@ public class UsuarioDaoImp implements IUsuarioDAO{
         Criteria criteria = session.createCriteria(Usuario.class);
         criteria.add(Restrictions.like("nombreUsuario",nombreUsuario));
         criteria.add(Restrictions.like("password",password));
-        criteria.add(Restrictions.eq("estado",true));
-        if(!criteria.list().isEmpty())
-           u=(Usuario)criteria.list().get(0);
+        criteria.add(Restrictions.eq("estado",true));        
+        if(!criteria.list().isEmpty()){
+        System.out.println("bbbbbbbbbbbba");    
+           u=(Usuario)criteria.list().get(0);}
         session.getTransaction().commit();
         session.close();
         return u;
@@ -51,7 +52,7 @@ public class UsuarioDaoImp implements IUsuarioDAO{
      */
     @Override
     public Usuario obtenerUsuario(String nombreUsuario) {
-        Usuario u=null;
+        Usuario u = null;
         Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Criteria criteria = session.createCriteria(Usuario.class);

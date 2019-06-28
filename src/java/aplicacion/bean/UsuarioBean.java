@@ -31,7 +31,7 @@ public class UsuarioBean implements Serializable{
      * Creates a new instance of UsuarioBean
      */
     public UsuarioBean() {
-        usuarioDAO= new UsuarioDaoImp();
+        IUsuarioDAO usuarioDAO= new UsuarioDaoImp();
         listaUsarios=new ArrayList<>();
     }
     public Usuario validarUsuario(String nombreUsuario, String password){
@@ -52,7 +52,8 @@ public class UsuarioBean implements Serializable{
     public void agregarUsuario (Usuario unUsuario){
         getUsuarioDAO().agregarUsuario(unUsuario);
     }
-
+    //metodo de cosultar 
+    
     /**
      * @return the listaUsarios
      */

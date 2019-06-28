@@ -17,13 +17,11 @@ public class LoginBean {
     
     
     public Usuario validarUsuario(String nombreUsuario, String password){
+        
         IUsuarioDAO usuarioDAO = new UsuarioDaoImp();
         return usuarioDAO.validarUsuario(nombreUsuario, password);
     }
     
-    /**
-     * Creates a new instance of LoginBean
-     */
     public LoginBean() {
     }
     

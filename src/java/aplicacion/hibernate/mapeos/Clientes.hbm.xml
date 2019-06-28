@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 20/06/2019 19:14:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="proyecto1" name="aplicacion.hibernate.mapeos.Cliente" optimistic-lock="version" table="clientes">
+  <class catalog="proyecto1" name="aplicacion.modelo.dominio.Cliente" optimistic-lock="version" table="clientes">
     <id name="dni" type="int">
       <column name="dni"/>
       <generator class="assigned"/>

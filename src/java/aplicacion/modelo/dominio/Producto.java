@@ -19,6 +19,7 @@ public class Producto  implements java.io.Serializable {
      private Boolean estado;
      private byte[] foto;
      private Set detalles = new HashSet(0);
+     
 
     public Producto() {
     }

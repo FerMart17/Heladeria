@@ -19,7 +19,7 @@ public class Usuario implements java.io.Serializable {
      private String apellidos;
      private String nombres;
      private Boolean estado;
-     private Set facturas = new HashSet(0);
+     private Set facturas = new HashSet(0); //clave foranea para facturas
 
     public Usuario() {
     }

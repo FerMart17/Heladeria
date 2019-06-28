@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 20/06/2019 19:14:29 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="aplicacion.hibernate.mapeos.Modopago" table="modopago" catalog="proyecto1" optimistic-lock="version">
+    <class name="aplicacion.modelo.dominio.Modopago" table="modopago" catalog="proyecto1" optimistic-lock="version">
         <id name="idmodoPago" type="int">
             <column name="idmodoPago" />
             <generator class="assigned" />

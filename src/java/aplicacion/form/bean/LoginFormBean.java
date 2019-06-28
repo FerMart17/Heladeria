@@ -39,22 +39,27 @@ public class LoginFormBean {
 
     public String validarUsuario(){
         String resultado=null;
-        Usuario usuario = loginBean.validarUsuario(nombreUs,passUs);
+        Usuario usuario = loginBean.validarUsuario(getNombreUs(),getPassUs());
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+getNombreUs());
         if(usuario == null){
             FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Credenciales Invalidas","Credenciales Invalidas");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+            System.out.println("bbbbbbbbbbbbbbbbbbbbb");
         }
         else
         {
+            System.out.println("llllllllllllllllllll");
             FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario Valido","Usuario Valido");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValidado", usuario); 
             //se guarda el "usuario" con el nombre "usuarioValidado" en el SessionMap del Context
             if(usuario.getTipoUsuario().equals("ADMINISTRADOR")){
                 resultado="paginaAdministrador?faces-redirect=true";
+                System.out.println("hhhhhhhhhhhhhhhh");
             }
             else{
                 resultado="paginaCliente?faces-redirect=true";
+                System.out.println("mmmmmmmmmmmmmmmmmmmmmmmm");
             }
             
         }
