@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package apliacion.form.bean;
+package aplicacion.form.bean;
 
+import aplicacion.bean.ProductoBean;
 import aplicacion.modelo.dominio.Categoria;
 import aplicacion.modelo.dominio.Producto;
 import java.io.ByteArrayInputStream;
@@ -24,12 +20,12 @@ import org.primefaces.model.UploadedFile;
 
 /**
  *
- * @author BRENDA
+ * @author BRENDA MENDEZ
  */
 @ManagedBean
 @ViewScoped
 public class ProductoFormBean implements Serializable{
-    
+
     @ManagedProperty(value = "#{productoBean}")
     private Producto unProducto;
     private ProductoBean productoBean;
@@ -40,7 +36,7 @@ public class ProductoFormBean implements Serializable{
      * Creates a new instance of ProductoFormBean
      */
     public ProductoFormBean() {
-       
+
     }
     public void init(){
        listaProductos= new ArrayList<>();
@@ -48,16 +44,14 @@ public class ProductoFormBean implements Serializable{
     }
     public Producto  validarProducto ( String  nombreProducto , int  codigo ){
         String resultado=null;
-        Producto unProducto = productoBean.validarProducto(nombreProducto, codigo);
+        unProducto = productoBean.validarProducto(nombreProducto, codigo);
         if(unProducto == null){
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Credenciales Invalidas","Credenciales Invalidas");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Credenciales Invalidas","Credenciales Invalidas");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
         }
         else
         {
-            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Producto Valido", "ProductoValido");
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto Valido", "ProductoValido");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValidado", unProducto);
             if (unProducto.getCodProducto().equals("producto")){
@@ -92,9 +86,16 @@ public class ProductoFormBean implements Serializable{
         }
        return unProducto;
     }
-     
-    
-    
+     public List <Producto> obtenerListaProductosCatalogo(){
+          listaProductos = productoBean.obtenerListaProductosCatalogo();
+        if(listaProductos == null){
+            FacesMessage facesmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Productos Invalidos","Productos Invalidos");
+            FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+        }
+            return listaProductos;
+     }
+
     public void modificarProducto(Producto unProducto) {
          getUnProducto().setEstado(true);
         if(getArchivo()!=null){
@@ -137,7 +138,7 @@ public class ProductoFormBean implements Serializable{
         }
         setUnProducto(unProducto);   
     }
-   
+
     public void agregarProducto (Producto unProducto){
         getUnProducto().setEstado(true);
         if(getArchivo()!=null){
@@ -159,15 +160,15 @@ public class ProductoFormBean implements Serializable{
         }
         setUnProducto(new Producto());
     }
-    
+
     public StreamedContent  getFotoProducto() throws IOException{
         FacesContext context=FacesContext.getCurrentInstance();
         if(context.getCurrentPhaseId()== PhaseId.RENDER_RESPONSE){
             return new DefaultStreamedContent();
         } 
         else{
-            String codigo = context.getExternalContext().getRequestParameterMap().get("codProd");
-            Producto producto = getProductoBean().obtenerProducto(codigo);
+            String descrip = context.getExternalContext().getRequestParameterMap().get("descripcion");
+            Producto producto = getProductoBean().obtenerProducto(descrip);
             if(producto.getFoto()==null){
                 return null;
             }
@@ -176,7 +177,7 @@ public class ProductoFormBean implements Serializable{
             }
         } 
     }
-    
+
    /**
      * @return the unProducto
      */
@@ -246,5 +247,5 @@ public class ProductoFormBean implements Serializable{
     public void setListaProductos(List <Producto> listaProductos) {
         this.listaProductos = listaProductos;
     }
-    
+
 }
